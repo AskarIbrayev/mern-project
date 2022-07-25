@@ -1,0 +1,14 @@
+GET http://localhost:3001/texts
+
+###
+
+POST http://localhost:3001/text/new
+Content-Type: application/json
+
+{
+    "text": "My name is C"
+}
+
+###
+
+DELETE http://localhost:3001/text/delete/62c6c27b60ead43c13656432
