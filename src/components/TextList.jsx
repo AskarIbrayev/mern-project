@@ -11,17 +11,19 @@ const TextList = ({texts, changedText, setChangedText, editText, deleteText}) =>
                             {item._id === changedText.id
                             ?
                             <span>
-                                <input value={changedText.text} onChange={e => setChangedText({...changedText,text: e.target.value})}></input> 
-                                <button onClick={() => editText(item._id)}>OK</button>
+                                <textarea className="textarea-edit" value={changedText.text} onChange={e => setChangedText({...changedText,text: e.target.value})}></textarea> 
+                                <button className="btn btn-submit_edit" onClick={() => editText(item._id)}>OK</button>
                             </span>
                             : 
                             <span>
                                 {item.text === '' ? '--empty field--' : item.text}
-                                <button onClick={() => setChangedText({...changedText, id: item._id, text: item.text})}>EDIT</button>
+                                <button className="btn-edit" onClick={() => setChangedText({...changedText, id: item._id, text: item.text})}>EDIT</button>
                             </span>
                             }
-                            {`Date: ${date.getDate()}/${(date.getMonth()+1)}/${date.getFullYear()} ${date.getHours()}:${date.getMinutes() > 9 ? date.getMinutes() : '0'+date.getMinutes()}`}
-                            <button onClick={() => deleteText(item._id)}>DELETE</button>
+                            <button className="btn-delete" onClick={() => deleteText(item._id)}>&#10060;</button>
+                            <span className="date-posted">
+                                {`Date: ${date.getDate()}/${(date.getMonth()+1)}/${date.getFullYear()} ${date.getHours()}:${date.getMinutes() > 9 ? date.getMinutes() : '0'+date.getMinutes()}`}
+                            </span>
                         </div>	
                     )
 				}).reverse()}
@@ -29,6 +31,7 @@ const TextList = ({texts, changedText, setChangedText, editText, deleteText}) =>
 
         )
     }
+    else return <div>The list is empty</div>
 }
 
 export default TextList
